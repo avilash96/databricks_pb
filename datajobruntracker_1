@@ -1,0 +1,14 @@
+--Query for jobrun tracket table time difference between jobstart and jobend and category by 120 second(editable)
+
+
+SELECT
+  dataJobRunTrackerId,
+  jobStartTime,
+  jobEndTime,
+  DATEDIFF(SECOND, jobStartTime, jobEndTime) AS diff_in_seconds,
+  CASE
+    WHEN DATEDIFF(SECOND, jobStartTime, jobEndTime) > 120 THEN 'high_time'
+    ELSE 'normal'
+  END AS time_status
+FROM
+  data_pipeline_tracker.allermi_data_pipelines_tracker.datajobruntracker

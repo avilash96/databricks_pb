@@ -1,0 +1,11 @@
+--Query for finding the count of processed files in datajobruntracker
+
+SELECT
+  databricksJobRunId,
+  COUNT(processedfiles) AS processed_file_count
+FROM
+  data_pipeline_tracker.allermi_data_pipelines_tracker.datajobruntracker
+WHERE
+  processedfiles IS NOT NULL
+GROUP BY
+  databricksJobRunId

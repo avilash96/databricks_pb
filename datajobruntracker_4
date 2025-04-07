@@ -1,0 +1,12 @@
+-- query for finding the rows where jobStatus is failed in jobruntracker table
+  
+
+SELECT
+  dataJobRunTrackerId,
+  jobName,
+  jobDescription,
+  jobStatus
+FROM
+  data_pipeline_tracker.allermi_data_pipelines_tracker.datajobruntracker
+WHERE
+  jobStatus = 'FAIL'

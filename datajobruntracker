@@ -1,0 +1,15 @@
+-- Query to get number of files get processed from the table datajobruntracker
+
+
+SELECT
+  dataJobRunTrackerId,
+  CASE
+    WHEN
+      processedFiles IS NULL
+      OR TRIM(processedFiles) = ''
+    THEN
+      0
+    ELSE LENGTH(processedFiles) - LENGTH(REPLACE(processedFiles, ',', '')) + 1
+  END AS file_count
+FROM
+  data_pipeline_tracker.allermi_data_pipelines_tracker.datajobruntracker
